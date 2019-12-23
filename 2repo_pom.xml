@@ -4,7 +4,7 @@
   <groupId>Hari.Testprojects</groupId>
   <artifactId>December</artifactId>
   <packaging>jar</packaging>
-  <version>2.0</version>
+  <version>1.0-SNAPSHOT</version>
 
   <name>December</name>
   <url>http://maven.apache.org</url>
@@ -24,17 +24,19 @@
   </dependencies>
 
 <distributionManagement>
-  <repository>
-  <id>hari_release</id>
-  <name>MVN_RELEASE</name>
-  <url>http://localhost:8081/repository/MVN_RELEASE/</url>
-  </repository>
-
-  <snapshotRepository>
+<repositories>
+ <snapshotRepository>
   <id>hari_snapshot</id>
   <name>MVN_SNAPSHOT</name>
   <url>http://localhost:8081/repository/MVN_SNAPSHOT/</url>
-  </snapshotRepository>
-
+ </snapshotRepository>
+ <repository>
+  <id>hari_release</id>
+  <name>MVN_RELEASE</name>
+  <url>http://localhost:8081/repository/MVN_RELEASE/</url>
+ </repository>
+</repositories>
 </distributionManagement>
+
 </project>
+
