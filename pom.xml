@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>Hari.Testprojects</groupId>
-  <artifactId>December</artifactId>
+  <groupId>hari.testprojects</groupId>
+  <artifactId>January</artifactId>
   <packaging>jar</packaging>
-  <version>2.1.1</version>
+  <version>5.0</version>
 
-  <name>December</name>
+  <name>January</name>
   <url>http://maven.apache.org</url>
 <scm>
-<developerConnection>scm:git:git@github.com:ExtracIT/December.git</developerConnection>
-<url>git:git:git@github.com:ExtracIT/December.git</url>
+<developerConnection>scm:git:git@github.com:hellohari/January.git</developerConnection>
+<url>git:git:git@github.com:hellohari/January.git</url>
   <tag>HEAD</tag>
   </scm>
 
@@ -25,16 +25,17 @@
 
 <distributionManagement>
   <repository>
-  <id>hari_release</id>
+  <id>jan_release</id>
   <name>MVN_RELEASE</name>
   <url>http://localhost:8081/repository/MVN_RELEASE/</url>
   </repository>
 
   <snapshotRepository>
-  <id>hari_snapshot</id>
+  <id>jan_snapshot</id>
   <name>MVN_SNAPSHOT</name>
   <url>http://localhost:8081/repository/MVN_SNAPSHOT/</url>
   </snapshotRepository>
 
 </distributionManagement>
 </project>
+
