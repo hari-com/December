@@ -4,13 +4,13 @@
   <groupId>hari.testprojects</groupId>
   <artifactId>January</artifactId>
   <packaging>jar</packaging>
-  <version>5.0</version>
+  <version>5.0-SNAPSHOT</version>
 
   <name>January</name>
   <url>http://maven.apache.org</url>
 <scm>
-<developerConnection>scm:git:git@github.com:hellohari/January.git</developerConnection>
-<url>git:git:git@github.com:hellohari/January.git</url>
+<developerConnection>scm:git:https://github.com/hari-com/December.git</developerConnection>
+<url>git:git://github.com/hari-com/December.git</url>
   <tag>HEAD</tag>
   </scm>
 
@@ -26,14 +26,14 @@
 <distributionManagement>
   <repository>
   <id>jan_release</id>
-  <name>MVN_RELEASE</name>
-  <url>http://localhost:8081/repository/MVN_RELEASE/</url>
+  <name>MVNTEST-RELEASE</name>
+  <url>http://localhost:8081/repository/MVNTEST-RELEASE/</url>
   </repository>
 
   <snapshotRepository>
   <id>jan_snapshot</id>
-  <name>MVN_SNAPSHOT</name>
-  <url>http://localhost:8081/repository/MVN_SNAPSHOT/</url>
+  <name>MVNTEST-SNAPSHOTS</name>
+  <url>http://localhost:8081/repository/MVNTEST-SNAPSHOTS/</url>
   </snapshotRepository>
 
 </distributionManagement>
