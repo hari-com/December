@@ -1,0 +1,31 @@
+::::::::Linux related:::::::::
+
+Fundamentals: http://linux-training.be/linuxfun.pdf
+Advanced: http://linux-training.be/linuxsys.pdf
+
+Along with the above pdf which is a very good document on all Linux commands with a detailed explanation, you guys can refer this page as well if you have time to practice. https://ss64.com/bash/
+
+
+
+::::::How to setup Java::::::::
+Download Java8 from below link:
+https://www.javahelps.com/2015/03/install-oracle-jdk-in-ubuntu.html
+
+Set Java path as below in $HOME/.bash_profile(~/.bash_profile):
+export JAVA_HOME=$HOME/<where-you-downloaded-your-java>
+export PATH=$JAVA_HOME/bin:$PATH
+
+Download Maven:(Download apache-maven-3.6.2-bin.tar.gz)
+https://maven.apache.org/download.cgi
+
+After downloading Maven from above link, follow below steps:
+1) tar xzvf apache-maven-3.6.2-bin.tar.gz
+2) After extracting Maven with above link, configure PATH as following:
+     export M2_HOME=$HOME/<where-you-extracted-your-maven>
+     export PATH=$M2_HOME/bin:$PATH
+
+
+::::::::::::::::::::::::::::::::
+Nexus:
+Installation: https://help.sonatype.com/learning/repository-manager-3/first-time-installation-and-setup/lesson-1%3A--installing-and-starting-nexus-repository-manager
+::::::::::::::::::::::::::::::::
