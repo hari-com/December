@@ -4,7 +4,7 @@
   <groupId>hari.testprojects</groupId>
   <artifactId>January</artifactId>
   <packaging>jar</packaging>
-  <version>6.1-SNAPSHOT</version>
+  <version>6.1</version>
 
   <name>January</name>
   <url>http://maven.apache.org</url>
@@ -13,7 +13,7 @@
    <connection>scm:git:git@github.com:hari-com/December.git</connection>
    <developerConnection>scm:git:git@github.com:hari-com/December.git</developerConnection>
    <url>http://github.com/hari-com/December.git</url>
-    <tag>HEAD</tag>
+    <tag>January-6.1</tag>
   </scm>
   
   <dependencies>
