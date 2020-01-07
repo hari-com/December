@@ -8,12 +8,13 @@
 
   <name>January</name>
   <url>http://maven.apache.org</url>
-<scm>
-<developerConnection>scm:git:https://github.com/hari-com/December.git</developerConnection>
-<url>git:git://github.com/hari-com/December.git</url>
-  <tag>HEAD</tag>
-  </scm>
 
+ <scm>
+   <connection>scm:git:git@github.com:hari-com/December.git</connection>
+   <developerConnection>scm:git:git@github.com:hari-com/December.git</developerConnection>
+   <url>http://github.com/hari-com/December.git</url>
+  </scm>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
