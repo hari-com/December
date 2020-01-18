@@ -1,6 +1,6 @@
 
 .bash_profile
-========================
+=============
 # .bash_profile
 
 # Get the aliases and functions
@@ -14,12 +14,15 @@ fi
 
 # Java and Maven Setup
 # =====================
-export JAVA_HOME=/home/hari/Desktop/_tools/jdk1.8.0_231
-export MVN_HOME=/home/hari/Desktop/_tools/apache-maven-3.6.3
+export JAVA_HOME=/home/hari/_tools/jdk1.8.0_241
+export MVN_HOME=/home/hari/_tools/maven-3.6.3
 export PATH=$JAVA_HOME/bin:$MVN_HOME/bin:$PATH
 
+
+
+
 Settings.xml
-========================
+============
 <settings>
   <servers>
    <server>
