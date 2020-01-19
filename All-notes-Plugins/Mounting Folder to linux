@@ -1,0 +1,9 @@
+yum install cifs-utils    => installing cifs on linux
+mkdir Desktop/share   => making a folder in linux for mount
+mount.cifs //192.168.1.196/_DevOps /home/hari/Desktop/share -o user=GAUTAMHP    => Provide PW from the windows machine
+
+On Third line
+"IP addrress" is your Windows IP Address
+"_DevOps" is the folder from windows machine to share
+"/home/hari/Desktop/share" is the location on the linux machine
+"GAUTAMHP" is the Windows UserName
