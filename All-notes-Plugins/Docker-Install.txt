@@ -1,25 +1,10 @@
-   61  yum-config-manager --enable rhel-7-server-extras-rpms
-   
-   63  yum list docker-ee  --showduplicates | sort -r
-   64  yum install -y yum-utils device-mapper-persistent-data lvm2
-   65  cat /proc/sys/crypto/fips_enabled
-   66  cd /etc/systemd/system/docker.service.d
-   67  cd /etc/systemd/system/
-   
-   70  mkdir docker.service.d
-   71  cd docker.service.d
-   72  vi fips-module.conf
-   73  cat /proc/sys/crypto/fips_enabled
-   74  systemctl daemon-reload
-   75  cat /proc/sys/crypto/fips_enabled
-   76  yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-   77  yum install docker-ce
-   78  systemctl enable docker.service
-   79  clear
-   80  systemctl start docker.service
-   81  docker version
-   82  ip a
-   83  clear
-   84  docker info
-   85  clear
-   86  docker run hello-world
+yum-config-manager --enable rhel-7-server-extras-rpms
+yum list docker-ee  --showduplicates | sort -r
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install docker-ce
+systemctl enable docker.service
+systemctl start docker.service
+docker version
+docker info
+docker run hello-world
