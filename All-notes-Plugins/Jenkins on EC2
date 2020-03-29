@@ -15,3 +15,10 @@ sudo su -
 Jenkins Local URL
 http://54.147.126.255:8080/ (replace ip address with your public IP address)
 
+================
+Jenkins PW reset
+https://www.youtube.com/watch?v=N3vz8VBs1WA
+
+================
+Jenkins installation on EC2
+https://www.youtube.com/watch?v=jmm8DsosBqw
