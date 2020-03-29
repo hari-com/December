@@ -22,16 +22,3 @@ Edit the file /etc/cloud/cloud.cfg and change the following entry to this value:
 disable_root false
 
 
-==
-AWS Related crdentials
-
-EC2 Jenkins
-User: gautamhp
-PW: Samsung@13
-
-
-LightSail Jenkins:
-IP:
-User: admin
-PW: admin123
-==
