@@ -1,0 +1,22 @@
+Enable root Access for Linux Instances
+======================================
+Create a root Password
+$ passwd root <the password>
+Configure and Restart the ssh Service for root Access
+Edit the configuration file /etc/ssh/sshd_config. Change the following to parameter to the values shown below:
+
+PermitRootLogin yes
+PasswordAuthentication yes
+Restart the service with the command
+
+$ service sshd reload
+Patch the authorized Keys File for the root User
+The simplest way is to use the ec2-user file and the certificate for the root user. Copy the ec2-user file over to the root user:
+
+$ cp ~ec2-user/.ssh/authorized_keys ~root/.ssh/authorized_keys
+This allows as well to login with the same key which is available for the ec2-user.
+
+Update the AWS Cloud Configuration File
+Edit the file /etc/cloud/cloud.cfg and change the following entry to this value:
+
+disable_root false
