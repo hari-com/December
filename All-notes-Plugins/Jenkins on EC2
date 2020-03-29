@@ -1,29 +1,43 @@
+To Install Apache Maven and Java 8 on your EC2 instance
+=======================================================
+Install Java
+sudo yum install java-1.8.0
+sudo yum install java-1.8.0-devel
+sudo yum install java-1.8.0-openjdk-devel
+
+sudo /usr/sbin/alternatives --config java   (Enter the following to set Java 8 as the default runtime on your EC2 instance)
+sudo /usr/sbin/alternatives --config javac  (Enter the following to set Java 8 as the default compiler on your EC2 instance)
+
+Revoming old Java
+sudo yum remove java-1.8.0-openjdk
+
+
+Install Maven:
+sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
+mvn –version
+
+
+=====================================
+Install Jenkins
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-
 sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
-
 sudo yum install jenkins
-
 sudo service jenkins start  (you should see OK message)
 
+Note:
+Jenkins installation on EC2 >>  https://www.youtube.com/watch?v=jmm8DsosBqw 
+Jenkins PW reset >>  https://www.youtube.com/watch?v=N3vz8VBs1WA 
 
-================
-If you need sudo access
-sudo su -
 
-================
 Jenkins Local URL
 http://54.147.126.255:8080/ (replace ip address with your public IP address)
 http://54.226.93.138:8080/
 
 ================
-Jenkins PW reset
-https://www.youtube.com/watch?v=N3vz8VBs1WA
-
-================
-Jenkins installation on EC2
-https://www.youtube.com/watch?v=jmm8DsosBqw
-
+If you need sudo access
+sudo su -
 
 ================================================
 Installing tools
