@@ -24,3 +24,7 @@ https://www.youtube.com/watch?v=N3vz8VBs1WA
 Jenkins installation on EC2
 https://www.youtube.com/watch?v=jmm8DsosBqw
 
+
+================================================
+Installing tools
+sudo yum install wget
