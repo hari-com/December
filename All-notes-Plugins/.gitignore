@@ -1,1 +1,16 @@
 *.properties
+
+
+==
+AWS Related crdentials
+http://3.84.150.161:8080/ 
+EC2 Jenkins
+User: gautamhp
+PW: Samsung@13
+
+
+LightSail Jenkins:
+http://34.199.116.245/
+User: admin
+PW: admin123
+==
