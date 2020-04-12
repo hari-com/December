@@ -4,12 +4,13 @@ sudo wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=ac
 sudo yum install -y jdk-8u141-linux-x64.rpm
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
-sudo yum install -y apache-maven --nobest
+sudo yum install -y apache-maven
 sudo yum install -y git
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkinsci.org/redhat/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
 sudo yum install jenkins -y
-sudo service jenkins start
+sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+#sudo service jenkins start
 
 
 #To choose the Java if you have multiple version
