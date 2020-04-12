@@ -10,7 +10,9 @@ sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkinsci.org/redhat/jenki
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
 sudo yum install jenkins -y
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
-#sudo service jenkins start
+sudo yum install jenkins -y
+systemctl enable jenkins
+sudo service jenkins start
 
 
 #To choose the Java if you have multiple version
