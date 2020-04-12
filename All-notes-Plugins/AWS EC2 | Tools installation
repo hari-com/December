@@ -1,45 +1,130 @@
-To Install Apache Maven and Java 8 on your EC2 instance
-=======================================================
-Install Java
-sudo yum install java-1.8.0
-sudo yum install java-1.8.0-devel
-sudo yum install java-1.8.0-openjdk-devel
+==============================================================================================
+#Install Java
+sudo yum install -y wget
+sudo wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm 
+sudo yum install -y jdk-8u141-linux-x64.rpm
+java –version
+# In case, above process does not work: https://blog.knoldus.com/installing-latest-oracle-jdk-on-linux-ec2-instance-centos/ 
 
+
+#Install Maven (tested and worked)  RHEL
+wget https://mirrors.gigenet.com/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz 
+tar xvf apache-maven-3.6.3-bin.tar.gz
+mv apache-maven-3.6.3 /usr/local/apache-maven
+sudo mv apache-maven-3.6.3 /usr/local/apache-maven
+
+#Bash-Profile
+export MVN_HOME=/usr/share/apache-maven
+export JAVA_HOME=/usr/java/jdk1.8.0_141
+export PATH=$JAVA_HOME/bin:$MVN_HOME/bin:$PATH
+source ~/.bashrc
+mvn -version
+
+
+#Installing using repo for default Amazon Linux 
+sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
+
+#if necessary, modify the repo for latest mvn (repo location: /etc/yum.repos.d/)
+#sudo vi /etc/yum.repos.d/epel-apache-maven.repo
+Replace baseURL as below
+baseurl=http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-7/$basearch/
+Replace baseURL as below
+baseurl=http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-7/SRPMS
+
+
+#Install Jenkins
+Step 1 : Connect to your Linux machine
+
+Set up Custom TCP port: 8080 in AWS Security Groups
+Inbound rules
+Type	        Protocol	  Port range	    Source
+HTTP	        TCP	        80	            0.0.0.0/0
+Custom TCP	  TCP	        8080	          0.0.0.0/0
+SSH	          TCP	22	    0.0.0.0/0
+HTTPS	        TCP	        443	            ::/0
+
+
+Outbound rules
+Type	        Protocol	  Port range	    Destination
+All traffic	  All	         All	          0.0.0.0/0
+
+
+Stable Jenkins: https://pkg.jenkins.io/redhat-stable/ 
+Latest Jenkins: http://pkg.jenkins.io/redhat/ 
+
+Step 2: Update Packages
+sudo yum update
+
+Step 3 : Check Java is installed. If not install java  
+java –version
+
+Step 4 : Download latest Jenkins code package
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+
+Step 5 : Import a key file from Jenkins-CI to enable installation from the package (If step 5 doesn’t work, then run step 6 and doe step 6 again)
+sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+
+Step 6 : Install Jenkins
+sudo yum install jenkins
+
+Step 7 : Start jenkins
+sudo service jenkins start
+
+Step 8 : Access Jenkins server using the public DNS of your ec2 on port 8080
+Make sure in security group ALL TCP port 8080 is added
+
+
+http://{ec2-public-dns}:8080
+example : http://3.17.204.53:8080/
+
+Note : Here you might have to allow port 8080 in your security group settings
+Useful tips (To start jenkins on a diff port)
+Update port number in /etc/sysconfig/jenkins
+
+To fetch initial admin password
+sudo su -
+cd /var/lib/jenkins/secrets/
+cat initialAdminPassword
+
+To stop Jenkins
+sudo service jenkins stop
+
+To uninstall Jenkins
+sudo service jenkins stop
+sudo yum remove jenkins
+sudo rm -r /var/lib/jenkins
+
+GIT Installation
+sudo yum install git -y
+
+Jenkins Setup
+Under Manage Jenkins>Configuration Systems
+Set the git hub server
+Set the global libraries
+
+Under tools setup
+Set Java, Maven and Git
+
+New SSH authentication needs to be setup
+ON EC2 directory can only be created on /home/ec2-user/ folder
+==============================================================================================
+
+
+If you have multiple Java
+============================
 sudo /usr/sbin/alternatives --config java   (Enter the following to set Java 8 as the default runtime on your EC2 instance)
 sudo /usr/sbin/alternatives --config javac  (Enter the following to set Java 8 as the default compiler on your EC2 instance)
 
-Revoming old Java
-sudo yum remove java-1.8.0-openjdk
-
-
-Install Maven:
-sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
-sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
-sudo yum install -y apache-maven    (use this if doesn't work >> sudo yum install -y apache-maven --nobest)
-mvn –version
-
-
-=====================================
-Install Jenkins
-sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
-sudo yum install jenkins
+Launch Jenkins
+===============
 systemctl enable jenkins
-sudo service jenkins start  (you should see OK message)
-
-Note:
-Jenkins installation on EC2 >>  https://www.youtube.com/watch?v=jmm8DsosBqw 
-Jenkins PW reset >>  https://www.youtube.com/watch?v=N3vz8VBs1WA 
-
-
-Jenkins Local URL
-http://3.84.150.161:8080/     (My EC2)
-http://54.147.126.255:8080/ Loly
-
-================
+sudo service jenkins start
 If you need sudo access
 sudo su -
 
-================================================
-Installing tools
-sudo yum install wget
+Links
+========
+Jenkins installation on EC2 >>  https://www.youtube.com/watch?v=jmm8DsosBqw 
+Jenkins PW reset >>  https://www.youtube.com/watch?v=N3vz8VBs1WA 
