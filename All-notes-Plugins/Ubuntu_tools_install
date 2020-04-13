@@ -1,7 +1,17 @@
 sudo apt update
 sudo apt upgrade
 sudo apt install openjdk-8-jdk openjdk-8-jre
+sudo apt install maven
 
-sudo vi /etc/environment
-JAVA_HOME= /usr/lib/jvm/java-8-openjdk-amd64
-JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+
+sudo apt install nano
+sudo nano /etc/profile.d/maven.sh (add below lines to the file > Save > Run source command)
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+export MAVEN_HOME=/usr/share/maven
+export M2_HOME=/usr/share/maven
+export PATH=${M2_HOME}/bin:${PATH}
+
+source /etc/profile.d/maven.sh
+
+
