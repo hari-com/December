@@ -6,6 +6,7 @@ Installing Java and Maven
 sudo apt install openjdk-8-jdk openjdk-8-jre
 sudo apt install maven
 
+
 sudo apt install nano
 sudo nano /etc/profile.d/maven.sh (add below lines to the file > Save > Run source command)
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
@@ -22,6 +23,7 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt-get update
 sudo apt-get install -y jenkins   or    sudo apt-get install jenkins
+systemctl status jenkins
 
 Notes
 ===========
@@ -31,9 +33,31 @@ Notes
 - If your /etc/init.d/jenkins file fails to start jenkins, edit the /etc/default/jenkins to replace the line
     HTTP_PORT=8080 by
     HTTP_PORT=8081
+    
+Adjusting Firewall
+======================
+If you are installing Jenkins on a remote Ubuntu server that is protected by a firewall you’ll need to open port 8080.
+Assuming you are using UFW to manage your firewall, you can open the port with the following command:
+
+sudo ufw allow 8080 
+sudo ufw status
+
+Status: active
+To                         Action      From
+--                         ------      ----
+OpenSSH                    ALLOW       Anywhere
+8080                       ALLOW       Anywhere
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+8080 (v6)                  ALLOW       Anywhere (v6)
+
 
 Upgrade
 =========
 Once installed like this, you can update to the later version of Jenkins (when it comes out) by running the following commands:
 sudo apt-get update
 sudo apt-get install jenkins
+
+
+Other Tools installation
+sudo apt install juju
+sudo apt install nslookup
