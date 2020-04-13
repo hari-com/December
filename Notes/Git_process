@@ -1,7 +1,6 @@
 -----------------------------
 '''SETUP'''
 -----------------------------
-
 #Installing Git
 Install from git-scm.com
 Use checkout as is, commit UNIX style
@@ -30,7 +29,6 @@ Go to the git tracked folder > right click > Tortoise Git > Settings > Git (on l
 -----------------------------
 '''OPERATING PROCESS'''
 -----------------------------
-	
 #Create a remote repo
 Create a new repository on GitHub (Private, Initialize with Readme)
 Use appropriate .gitignore file
@@ -84,3 +82,56 @@ GitHub > "Merge pull request" > Confirm merge
 #Delete remote branch
 Remote personal/feature branch can be deleted since its changes are now merged into master
 GitHub > "Delete branch" 
+
+
+-----------------------------
+'''Git commands'''
+-----------------------------
+Adding Username/Email
+==========================
+git config --global user.name "someone"
+git config --global user.email "someone@gmail.com"
+
+Verify if added correctly
+==========================
+git config user.name
+git config user.email
+git config --list
+
+Removing existing GIT fork configuration
+==========================
+git remote -v 
+git remote rm origin
+git remote rm upstream
+
+Adding Fork 
+==========================
+git remote add origin <git URL (your fork URL)>
+git remote add upstream <git URL (Branch URL where you want to push)>
+git remote -v
+
+Process/Commands
+==========================
+git checkout master
+git pull --rebase origin master
+git status (it will show any untrack files with red color)
+git remote -v (it will show your current fork)
+git add . (it will prepare all the files to commit)
+git status (now it will show any untrack files with green color which means ready to commit)
+git commit –m “message” (committing the new changes with short info message)
+git push origin master (pushing the changes to your fork repository)
+
+Git Tag
+==========================
+git tag release/Nov		(creating a tag “release/Nov” for November release)
+git push origin release/Nov	(pushing the tag to the fork repository)
+git push upstream release/Nov	(pushing the tag to the upstream URL or main repository)
+
+
+
+
+Others
+==========================
+SSH
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+ 
