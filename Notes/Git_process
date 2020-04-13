@@ -1,0 +1,86 @@
+-----------------------------
+'''SETUP'''
+-----------------------------
+
+#Installing Git
+Install from git-scm.com
+Use checkout as is, commit UNIX style
+
+#Installing Tortoise Git
+Download and install, use @samsung.com email address
+
+#GitHub
+Works with Chrome only
+Website: github.sec.samsung.net
+
+#Local
+Create a Git folder somewhere where you want all your projects to be
+Setup notepad++ to use in command prompt/ Gitbash
+	Add notepad++.exe path on environment variable
+	Create a new bash profile file (Gitbash: notepad++ ~/.bash_profile)
+	Inside the file add line: alias npp='notepad++ -multiInst -nosession'
+	
+#Setting up commit template
+Save .gitmessage.txt file to local path
+Go to the git tracked folder > right click > Tortoise Git > Settings > Git (on left hand pane) > Edit global .gitconfig > add below lines:
+[commit]
+  template = "C:/THE NEW/DOCS/08 Automation/00 Git/.gitmessage.txt"
+
+	
+-----------------------------
+'''OPERATING PROCESS'''
+-----------------------------
+	
+#Create a remote repo
+Create a new repository on GitHub (Private, Initialize with Readme)
+Use appropriate .gitignore file
+
+#Link it to your local repo
+Create a new folder inside your Git folder (from Local above)
+Right-click inside of the folder > Git clone > Add URL of GitHub repo (Enter creds if asked)
+
+#Put up your local repo on Eclipse
+Eclipse > File > Import > Project from Git > Select appropriate folder and add as General
+
+#Giving others access to remote repo
+Remote repo > Setting > Collaborators
+
+#Make sure the local master is up to date
+git checkout master
+git pull --rebase origin master
+[Tortoise Git > "Rebase" from origin master]
+
+#Create your own branch
+git checkout -b hari_branch
+
+#If own branch is already created, make sure it is up to date 
+git checkout hari_branch
+git pull --rebase origin master
+[Tortoise Git > "Rebase" from origin master]
+
+#Make modifications to your code
+
+#Add, Commit changes to your local repo
+#Push commited changes from local to remote repo (-> new branch created on remote repo)
+git add .
+git commit
+git push origin hari_branch (hari_branch is created on remote end if it doesn't already exist)
+[Tortoise Git > Git commit -> "hari_branch" > Commit and Push]
+
+#Pull changes from your remote branch to remote master
+GitHub > "Compare and Pull Request"
+Add reviewer as applicable
+Add comment describing changes
+"Create Pull request"
+
+#Reviewer reviews your changes
+GitHub > "Add your review" > Comment or Approve or Request changes
+REVIEWER SHOULD NOT SUBMIT MERGE REQUEST, LET THE SUBMITTER DO IT
+
+#Merge changes from Pull request into remote master
+DO NOT SUBMIT MERGE REQUEST UNTIL THE REVIEWER APPROVES
+GitHub > "Merge pull request" > Confirm merge
+
+#Delete remote branch
+Remote personal/feature branch can be deleted since its changes are now merged into master
+GitHub > "Delete branch" 
