@@ -1,10 +1,11 @@
-Installing Git Kit
 Git installation steps
+
 $ yum groupinstall "Development Tools"
 $ yum install gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel
 $ yum install curl-devel
 
 Downloading Git package
+
 $ wget https://github.com/git/git/archive/v2.10.1.tar.gz -O git.tar.gz
 $ tar -zxf git.tar.gz
 $ cd git-2.10.1/
