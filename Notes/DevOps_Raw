@@ -1,0 +1,1013 @@
+DevOps Overview
+
+DevOps is the practice of operations and development engineers participating together in the entire service lifecycle, from design through the development process to production support. 
+DevOps is no more than a set of processes that coordinate to unify development teams and processes to complement software development. The main reason behind DevOps' popularity is that it allows enterprises to create and improve products at a faster pace than traditional software development methods.
+•	Earlier it was called as Build and Release Engineer
+•	DevOps engineer will use all organization tools and maintain the all the tools during the build and release process.
+•	It is also called a production support role.
+
+DevOps engineer role:
+DevOps engineer will be involved from Implementation >>> Production phase
+Integrated testing (IT), maintenance testing (MT) and User Acceptance Testing (UAT) all will be done will be in non-production environment.
+
+ 
+
+Limitation in previous technology and why DevOps come in to the picture?
+Previously, the developer has the prepare the code and maintain the code and take it to the production. Since none of the team was dedicated for the deployment process, developer has to do all these process instead of focusing on developing the tools.
+Now, DevOps is the team who will take care of all the process from the implementation until the product deployment phase in SDLC.
+
+Tools and Technologies:
+Unix and Shell scripting: 90% of time DevOps will be working in this environment
+Agile and Scrum methodologies:
+Source Code Management (SCM): GitHub
+Artifact Repository: Nexus
+Build Tools: Maven, Ant
+Continuous integration: Jenkins
+Continuous Deployment: Ansible
+Legacy servers VS Cloud:
+Application server and Web servers:
+Docker:
+Log monitoring: Splunk
+Networking and Debugging: 
+Load Balancer:
+Certificate Management:
+Cloud Computing:
+Kubernetes:
+AWS: Overview
+
+Setting up Linux VM
+Setup Linux virtualization on Windows
+Install OVM in windows:
+https://download.virtualbox.org/virtualbox/6.0.12/VirtualBox-6.0.12-133076-Win.exe 
+
+Download Redhat7 ISO image:
+https://developers.redhat.com/download-manager/content/origin/files/sha256/43/431a58c8c0351803a608ffa56948c5a7861876f78ccbe784724dd8c987ff7000/rhel-server-7.4-x86_64-dvd.iso 
+Note: Create a free Red hat Account
+
+Follow the steps as mentioned in the below URL to import and configure Redhat image to OVM from step “Create and configure a VM in VirtualBox”
+https://developers.redhat.com/products/rhel/hello-world#fndtn-virtualbox 
+
+Refer to the attached file for details: 
+ 
+
+
+
+Linux Commands
+Cmd	Syntax			Description
+pwd>	$ pwd 			>> present directory
+cat>	$ cat <filename> 	>> read the file
+man>	$ man cat		>> manual for each command
+$ whoami 			>> to display the user
+$ hostname 			>> to display the hostname (PC name)
+$ groups 			>> to display which group the user is belongs to
+ls>	$ ls -lart 		>> list all including hidden files (filename “d” represents the directory)
+$ ls –ltr  		>> to display the list in timestamp order (older first)
+$ ls –ltr ‘file*’ 	>> to display the file starting with file
+mkdir>	$ mkdir ‘foldername’	>> creating folder (case sensitive)
+cd	$ cd ..			>> go to the 2 previous directory
+	$ cd –			>> to go to the previous working directory
+	$ cd .			>> to go to the previous directory 
+vi>	$ vi ‘filename’		>> create/edit the file (VI editor)
+>> esc >:wq > enter >> to save the file
+more VI editor commands from Linux guide
+grep>	$ grep ‘string’ <filename>	>> to search the contents inside the file
+grep –i>	$ grep –i ‘string’ <filename>	>> to search the contents of file (ignore case sensitive)
+$ find . –name <filename>	>> to find the file in the folder including subfolder
+echo>	$ echo $variable(JAVA_HOME)	>> to print the variable name
+
+echo>	$ echo “line” > <filename>	>> echo can be also used to create a file
+	$ echo “line” >> <filename> 	>> double >> will append the line to the existing file (single will overwrite)
+
+esc>:%s/<oldworld>/<newword>	>> to replace the world in the file (from the VI editor/inside the file)
+>> revert the change >> just press “U” (undo the most recent change)
+$ sed ‘s/<oldworld>/<newword>’ <oldfile> > <new file>	>> to replace the world in the file (from terminal)						>> ‘>’ is called as re-directional operator
+>> Undo can’t be done when changing from outside of the file i.e. Terminal)
+
+rm –r>	$ rm –r ‘foldername’	>> to delete a folder including its contents (r > recursive)
+cp>	$ cp ‘oldname’ ‘newname’	>> copying the file
+mv>	$ mv ‘oldname’ ‘newname’	>> renaming the file
+tail>	$ tail -5 <filename>	>> to see the last 5 lines of the file (head is for the first line)
+chmod>	$ chmod 600 <filename>	>> to change the permission (1 > execute| 2 > write| 4> read)
+				>> it wants to have read+write+execute then add all numbers (1+2+4 => 700)
+>> 1st two ‘rw’ is for user, 2nd is group
+				>> default file permission will be read and write
+tar>	$ tar -cvf <filename.tar>	>> to compress a file (for compress is C)
+tar>	$ tar -xvf <filename.tar>	>> to extract a file (for extract is X)
+gzip>	$ gzip ’’		>> to compress a file (same like ZIP)
+$ tar cvf file.tar *.c		>> creates a tar file called file.tar which is the Archive of all .c files
+$ tar xvf file.tar "fileA" "fileB" >> extract multiple files from the tar, tar.gz and tar.bz2 archive file.
+$ tar czf file.tar | wc –c	>> display the size of archive file in KB
+
+Using multiple commands
+$ cat <filename> | wc –l		>> it will execute the first command and give the input to the second command
+$ cat t2 | wc -l 		>> running multiple commands together (wc -l is for line count from ‘t2’ file)
+
+Other Linux commands 
+Google Chrome install
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+yum install ./google-chrome-stable_current_*.rpm
+Removing Firefox
+rpm -evv firefox
+linux Update
+yum check-update
+yum update -y
+To check release
+cat /etc/os-release
+
+Installing Network Tools (Samba and cifs)
+yum install samba-client cifs-utils
+
+Installing Network Tools (Samba and cifs)
+smbclient -L 192.168.1.59                                                                             (your windows PC IP)
+
+Mounting window folder to Linux OS
+mount -t cifs -o username=gautamhp //192.168.1.59/lin /mnt          (gautamhp is my window username //myWindowIP)
+
+mount                         (you can see it is mounted)
+cd /mnt
+ls -lart                         (files can be seen)
+
+to permanently mount
+umount /mnt            (before permanently mount, need to unmounted first)
+vim /etc/fstab           (add the below line at the bottom)
+//192.168.1.61/DevOps /mnt cifs defaults,_netdev 0 0                                ##//mywindowsip/myfolder which I want to share##
+$ mount
+
+To check the running port
+netstat –anp | grep 8888
+
+
+Fully Qualified Domain Name (FQDN) >>
+More Linux commands (Basic and Advance are added in pdf file) 
+
+.bash_profile (.sh)
+•	bash profile wil be located in the home directory and it’s a hidden file.
+•	All our environment variables will be set using .bash profile
+•	bash profile settings will be only applicable to logged user (other users has to configure separately)
+•	below is the bash profile path setup for Java and Maven
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+
+# Java and Maven Setup
+# =====================
+export JAVA_HOME=/home/hari/Downloads/_tools/jdk1.8.0_231
+export MVN_HOME=/home/hari/Downloads/_tools/apache-maven-3.6.3
+export PATH=$JAVA_HOME/bin:$MVN_HOME/bin:$PATH
+
+Shel scripting (.sh)
+•	shell scripting is series of Linux commands which can be execute at once to avoid repetitive task
+•	Filename extension has to be .sh
+•	Different type of shells (K shell, born shell, bash shell etc)
+$ which sh		>> to display which shell is using (there are 
+$ vi ‘script.sh’		>> creating the script (write the commands)
+$ chmod 600 ‘script.sh’	>> change permission before running the script (1=execute/2=write/4=read)
+$ chmod u+x ‘script.sh’	>> change the permission in other way
+#! /usr/bin/sh 		>> it is called SEBACK which is used to start any shell scripting
+$ ./  ‘scriptname’		>> to execute the shell script ($ sh “script.sh” also execute the file)
+
+Variables 		>> to store a value and we can repeatedly used
+
+# 1nd script 
+#! /usr/bin/sh
+## Arguments (# will ignore the line)
+x=$1
+y=$2
+echo “value of X is: $x”
+echo “value of Y is: $y”
+## Addition
+sum=$(($a+$b))
+echo “adding $a and $b will be: $sum”
+
+# To execute this  $ vi script.sh 10 20 
+(this will hard code the value for x and y) or assign the value by not hardcoding, i.e. just running the script
+
+# 2nd script
+## Strings
+#! /usr/bin/sh
+Fname=$1
+Lname=$2
+
+echo “Your first name is: $fname”
+echo “Your last name is: $lname”
+
+# 3rd script
+## Conditions
+#! /usr/bin/sh
+a=3
+b=5
+if [[$a -ls $b ]] ; then          # ls => Less than | gt => greater than 
+    echo “A is smaller than B”
+elif [[$a –gt $b ]] ; then  # we can use as many conditions we want if the condition does not match, it will go to the else condition
+    echo “A is greater than B”
+else
+    echo “A and B are equal”
+fi                                                     # if condition closed with fi
+
+# Note: -ls and -gt used when using with variables, for numbers we can use <= and >= operator
+
+
+# 4th script
+## String
+#! /usr/bin/sh
+Str1= John
+Str2=Adam
+If [[ “$str1” == “$str2””; then          #For Strings, we need to use double coat “ ”
+    echo “Both strings are equal”
+
+
+# 5th script
+## for loop                                                                   # for loop will continuously run until the condition is accepted
+#! /usr/bin/sh
+i=0
+for (i=0; I<=12; i++)
+for i in 1 2 3 4 12 16             # value of i is incrementing (it can be any random numbers)
+do
+if [[ $i –gt 9 ]]; then
+  echo “Value of i is: $i”
+fi    # if ends with fi
+done  # all loop ends with done
+
+
+# 6th script
+## while loop                                                                # while loop will continuously run until the condition is matched
+#! /usr/bin/sh
+
+input=Hello
+while [ “input” != “bye” ]
+do
+echo “Please type something (bye will quite)”
+read –p ‘enter your input’ input   #Read  => prompt the user to enter the value in the script
+echo “you have entered: $input”
+done   # all loop ends with done
+
+# 7th script
+# Reading a file with while loop (inside the script)
+#! /usr/bin/sh
+
+line=1 
+cat ./<filename> | while IFS= read –r var   #var is used for storing a value while running script
+do
+  echo “I am printing line $line:” var
+  line=$((line+1))
+done
+
+# 8th script
+# Using UPPER or LOWER case with while loop (tr is used for changing the case)
+#! /usr/bin/sh
+
+read -p “enter your string: “ input                #storing user entered value to variable called input
+input1=’echo $input | tr ‘[:upper:]’ ‘[:lower:]’’  # converting user entered value to upper case and storing to variable called input1
+echo “your input is converted to: $input1”
+
+
+
+
+
+
+
+
+
+ 
+Software Development Life Cycle (SDLC):
+ 
+Phases of SDLC:
+In SDLC, there are total 5 different phase…
+Requirement analysis: Client will hand over the requirement or expectation to business team.
+Design: Once requirement is received from client, business team will work with architect team to design the implementation.
+Implementation: Once the design has been done, then it will be handover to the developer team to develop the code and test the code and will take it to the production.
+Testing: Once the implementation has been done then it will send over to QA team for validation.
+Evolution: Once QA will test and validate the product, then it will go to the production or deliver to the client.
+SDLC	Requirement Analysis	 	 	 
+	Design	 	 	 
+	Implementation	DEV	DEVOPS	SCM - Source Code Repo
+	Testing	QA		Testing - IT, MAINT, UAT -(Non_Production) - Sign off
+	Evolution / GO-LIVE	PRODUCTION /DEVLIVER		PRODUCTION
+
+Waterfall (also called as traditional methodologies)
+-	Each project will be divided in to various phases (feature 1, feature 2… etc.)
+-	It is also called series implementation
+-	All the features will be decided/discuss at the beginning
+-	It will be divided into each features (Feature1, 2, 3 ...)
+-	When it phases started, cannot changes anything until the project goes to production 
+-	If client wants to change something, then it will require another phase
+-	Any changes to add will require a different phase and it will be possible after the previous feature go to the production.
+Agile 
+-	Most of companies are adopting Agile methodologies because of the flexibility
+-	Projects will be divided in to Sprints (Sprints are the project deadlines which will have certain deadlines)
+-	Development life cycle will be discussed in every sprint
+-	Features can be added during the implementation (before the production)
+-	Multiple features can be go parallel 
+-	We can utilize all the resource at the same time as it will be divided in to the different sprints 
+ 
+Agile have sub methodologies
+Scrum 
+-	Scrum is an agile process framework where every sprints will track until each sprint is complete.
+-	There will be a Scrum master who is responsible for tracking all the progress until the sprint is complete 
+-	Scrum master can be the same project manager
+
+Kanban
+-	Kanbon is a kind of dashboard where project can be tracked easily with individual feature management.
+-	Kanban is a workflow management method designed to help you visualize work and maximize efficiency.
+
+Source Code Management (SCM)
+-	It is a centralized location for the project source code where all the developer can get access in order to pull or push the latest changes.
+-	Anything that is related to the project other than binaries will be stored in SCM.
+
+Why we need SCM?
+-	To save all the project source code to a centralized location (centralized repository)
+-	When multiple developers are working the same module which are co-related, it’s easy for developers to get the latest code from centralized location and do the local changes.
+
+There are different kinds of repository type
+-	GIT, SVN, Perforce etc.
+
+GitHub Cycle (SCM) from developer perspective:
+ 
+GitHub Cycle (SCM) from DevOps perspective:
+-	Get the latest code from central repository
+-	Build the package using build tools
+-	Deployment to the QA and production environment
+
+ 
+GitHub terminologies (GitHub is a repository type)
+
+Hierarchy of the SCM:
+-	Organization > Repository > Branches > Code
+Repositories
+-	For project will have each repository on SCM
+-	Organization will have multiple repository 
+-	For each project will have repository and for each repository will have branches 
+Branch
+-	Branches are required to maintain the different features code
+-	When people are working on multiple features they can store their code in to the related branch
+
+GitHub terminologies	- Repositories -> Proj A/ Proj B			
+	- Branches —> Dec/Hotfix(Dec1.1)/Jan/Master			
+	- Merging —>	Feature1	Feature 1.1	
+	feature 1 —->  feature 1.1 —->  feature 2			
+	Dec/Hotfix(Dec1.1)/Jan			
+	Master —> Nov			
+			Nov 24	
+		Nov 23	Merge code from Nov to Master	
+	Nov- Hotfix	Dec 05__06		Dec 05
+	December	Dec 15		
+	January	Jan 20		
+
+Master Branch
+-	Master will have the source code that is in production
+-	Before the project is closed, all the previous code will be merged to new branch (which is next release)
+-	If the product was never released, then master branch will be empty
+
+Below table shows the merging strategy 
+	Branch	Release Date	Description
+Merging Strategy	Master	 	 
+	 	 	Nov 30
+	 	 	Bug is reported from Nov 23 release
+	Nov-Hotfix	Nov 30	This branch will have code merged from Master branch
+	December	Dec 5	 
+	January	Jan 20	 
+	Master	 	 
+
+ 
+GitHub terminologies cont.
+
+Clone	> This is when pulling the code from remote to local first time
+> To copy a code from any NEW repo to local.                        git clone upstream <branchname URL>
+Fork	> Fork —> Cloning in UI from the central repo to your fork repo
+Pull	> Getting all the latest changes from GIT repo to local
+> Checkout code from remote repo.                                         git pull upstream <branchname URL>
+Add	> To add all modified files from local to main repo.
+> Do needed changes in your local branch.
+> Then start adding changes to fork repo.                                    git add . or  $git add <filename>
+Commit	> To push the changes from local we have to commit
+> To move coded from local to GitHub
+> While doing a commit, we will give an commit message        git commit -m “message”
+Push	> Pushing changes from local to GitHub fork repo or remote repo
+> Origin is your fork repo and upstream is master branch         git push origin master”
+Whole GitHub Process	> Local —> add + commit + push —> Fork repo —> 
+> Pull Request(PR) —> 
+> After the PR is reviewed by admin, PR is merged, then code is merged/copied to Remote repository 
+
+
+ 
+
+ 
+GitHub UI
+Website: www.github.com
+
+Installing Git Kit
+Git installation steps
+$ yum install curl-devel
+$ yum groupinstall "Development Tools"
+$ yum install gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel
+
+Downloading Git package
+$ wget https://github.com/git/git/archive/v2.10.1.tar.gz -O git.tar.gz
+$ tar -zxf git.tar.gz
+$ cd git-2.10.1/
+$ make configure
+$ ./configure --prefix=/usr/local
+$ make install
+
+Creating an organization
+-	Sign up a free account on www.github.com 
+-	From Settings > New organization
+-	Give organization name and follow the steps on the screen
+
+Create a repository
+-	From Settings > New organization > follow the steps on the screen
+-	Default branch is Master branch
+Updating profile with email ID
+-	From the Accounts > Settings > add email address (adding email address is mandatory for organization which help to identified the user while raising the PR)
+Creating ssh key
+-	ssh-key is a standard component of the Secure Shell Protocol used to establish secure shell sessions between remote computers over insecure networks, through the use of various cryptographic techniques.
+-	We need to add ssh key to avoid entering our GitHub credentials every time we use push commands to the GitHub repository
+-	To add ssh key From settings > profile > generate a ssh key
+
+Generating a ssh key
+-	Go to profile > settings > SSH and GPG key > New ssh key
+-	From terminal 
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+cat ~/.ssh/id_rsa.pub
+
+-	Copy/paste the key (from ssh-rsa until your email address)
+-	Give any name for the key and add
+
+Forking a repository
+-	Go the main repository 
+-	Click on “Fork”
+-	It will create a clone copy of the main repository under your profile which you will have access to push
+-	If you’re admin for the same repository where you want to push the changes, then you directly have push access in to this
+-	After forking the repository then clone command (from terminal) can be done.
+-	Below screenshot shows the forking process
+ 
+
+Configuring Github with username and email address
+git config --global user.name “<username>”
+git config --global user.email “<emailaddress>”
+
+Git Clone (Cloning your Fork to the local and push some changes to remote repository)
+git clone git@github.com:hellohari/December.git (your fork URL)
+
+o	if will create a folder in your present working directory
+o	Add or modify new files
+$ git status (it will show any untrack files with red color)
+$ git remote -v (it will show your current fork)
+$ git add . (it will prepare all the files to commit)
+$ git status (now it will show any untrack files with green color which means ready to commit)
+
+$ git commit –m “message” (committing the new changes with short info message)
+$ git push origin master (pushing the changes to your fork repository)
+o	After pushing the changes, we need to raise a PR from Fork repository
+
+Creating a pull request (PR)
+-	From GitHub UI, go to your fork repository
+-	Click on the “New pull request” (follow the screenshot below for the steps)
+-	Any previously merge request history can be seen from the “pull request”
+
+ 
+ 
+ 
+Anything in the green color means you're adding these changes (it will also show + sign at the beginning)
+
+ 
+
+ 
+This will be shown from only Repository Admin screen while merging into the main repository.
+
+Removing existing GIT fork configuration
+git remote -v 
+git remote rm origin
+git remote rm upstream
+
+Adding Fork 
+git remote add origin <git URL (your fork URL)>
+git remote add upstream <git URL (Branch URL where you want to push)>
+git remote -v
+
+.gitignore file
+-	gitignore tells git which files or file types it should ignore during push changes.
+-	It's usually used to avoid committing transient files from your working directory that aren't useful to project.
+
+ 
+Creating local branch and working from local
+-	We need to create multiple branch on the local to push the code to the different branch on remote repository.
+git checkout –b <newbanchname>  (to create new local branch and checkout the code from current upstream)
+git branch   (to see if new branch is created and selected)
+
+-	After the changes are made on the local,
+git push origin <newbranchname>   (origin has already defined as origin URL but just need to give the branch name from which branch we are pushing the change)
+
+The summary of the process will be:
+> Checkout code from remote repository 
+> Pull the latest code from remote repo for any additional changes
+> Do needed changes in your local branch
+> Add the local changes
+> Commit the changes
+> Raise PR to needed branch from your fork repo
+
+Installing git
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+https://git-scm.com/download/linux
+More git commands
+https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository
+git rebase
+https://git-scm.com/docs/git-rebase
+
+git cheat sheet
+
+ 
+
+
+
+Web-Hooks
+-	A web hook is a method of augmenting or altering the behavior of a web page, or web application, with custom callbacks. 
+-	It is similar as “Branch Protection Rules” under the Repository
+
+Pre-hook: On the GitHub Repository, any custom rule for before raising a PR or to raise a PR are called pre-hook.
+Post-hook: Any custom rule for Post raising a PR are part of Post-hook (ex. any approval for post PR)
+
+More git hooks scripts
+https://github.com/github/platform-samples/tree/master/pre-receive-hooks
+
+Git Tags
+-	Every time when do production release, we release a tag
+-	Git tags are used to tag any release version code so it can be easily pull the same using the tag later.
+-	Git tags can be directly push to main repository if you have the admin access
+-	Tags are displayed under the release section on the page
+
+git tag release/Nov		(creating a tag “release/Nov” for November release)
+git push origin release/Nov	(pushing the tag to the fork repository)
+
+git push upstream release/Nov	(pushing the tag to the upstream URL or main repository)
+
+ 
+
+git.stash
+-	git.stash is a stage or a local status which is after the commit but before the push.
+-	After the commit has been done, git status will not show any changes remain even it was not push to remote and that will be stored in git.stash stage.
+
+Index
+-	Every time we do commit, the version will be increasing and all the commit that have made will be stored in to the index file under the local .git folder.
+
+git log
+
+ 
+Maven build lifecycle (Build release process)
+•	Before the build process, make sure all the latest code is pulled from SCM repo
+•	Update the pom.xml file with proper version number, remote repository details and SCM tag details
+•	Run the mvn clean command to make sure clean everything before you start
+
+mvn validate		>> To validate the project is correct and all necessary information is available 
+mvn compile		>> To compile the source code of the project
+mvn clean test		>> To test the compiled source code using testing framework. (Not the code be packaged or deployed)
+mvn package		>> To take the compiled code and package it in its distributable format, such as a JAR
+mvn verify		>> To checks on results of integration tests to ensure quality criteria are met
+mvn clean install	>> To install the package into the local repository, for use as a dependency in other projects locally
+mvn clean deploy	>> Complete the build environment, copies the final package to the remote repository for sharing with other developers and projects (only snapshot version)
+mvn release:prepare	>> To check all the prerequisites are there (this will create a tag to SCM repo and post the release)
+Release version >> 15.0 (same version)
+SCM release tag >> “January-15.0”
+New development SNAPSHOT >> 16.0_SNAPSHOT
+mvn release:perform	>> Copies the final package to remote repository (this is the release version)
+
+mvn release:rollback	>> If the release process doesn’t went through, we need to rollback (rollback will fix the pom.xml version)
+	  *** commands with bold text are the mainly run commands
+
+
+Settings.xml file (under .m2 directory)
+•	User has to create this file in the ~/.m2 directory 
+•	Nexus repository credentials will be stored in to this file
+•	ID has to be match with the pom.xml file
+•	Maven will get the credential from this file during the build deployment process
+
+<settings>
+  <servers>
+   <server>
+    <id>jan_release</id>              ## this id has to be match from pom.xml ##
+    <username>admin</username>        ## username of artifact repo (nexus) ##
+    <password>admin123</password>     ## password of artifact repo (nexus) ##
+   </server>
+
+   <server>
+    <id>jan_snapshot</id>
+    <username>admin</username>
+    <password>admin123</password>
+   </server>
+
+  </servers>
+
+<localRepository>C:\_tools\maven3\_workspace</localRepository>
+## This is the local repository if you want to change | by default, it will be .M2 repository for Linux ##
+
+</settings>
+
+ 
+POM.xml file (Project Object Model)
+•	POM.xml file should be present on the same directory from where maven command will be performed
+•	This file store all the information about the SNAPSHOT and RELEASE version
+
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>hari.testprojects</groupId>
+  <artifactId>January</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>January</name>
+  <url>http://maven.apache.org</url>
+
+ <scm>
+   <connection>scm:git:git@github.com:hari-com/December.git</connection>
+   <developerConnection>scm:git:git@github.com:hari-com/December.git</developerConnection>
+   <url>http://github.com/hari-com/December.git</url>
+    <tag>HEAD</tag>
+  </scm>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+<distributionManagement>
+  <repository>
+  <id>jan_release</id>
+  <name>MVNTEST-RELEASE</name>
+  <url>http://localhost:8081/repository/MVNTEST-RELEASE/</url>
+  </repository>
+
+  <snapshotRepository>
+  <id>jan_snapshot</id>
+  <name>MVNTEST-SNAPSHOTS</name>
+  <url>http://localhost:8081/repository/MVNTEST-SNAPSHOTS/</url>
+  </snapshotRepository>
+
+</distributionManagement>
+</project>
+
+
+ 
+Nexus
+Two types repository used in SDLC:
+Github repo >> Github repository is where we put our source code > it is called SOURCE CODE repository
+Nexus Repo >> Nexus repository is where we put our artifacts > it is called ARTIFACT REPOSITORY
+
+Installing Nexus
+•	Download the Nexux tar file and extract into tools folder
+•	Go to the Nexus/sonatype**/Nexus/bin folder and type below command to start
+./nexus run
+
+While installing nexus, it will create some default repository
+From UI
+•	Type “Localhost:8081” on the browser to run Nexus UI
+•	For the first time, it will ask username and PW 
+•	For the default Password to login to Nexus:
+•	Go to the Sonatype work directory > Nexus3
+cat admin.password
+•	Use the admin password to login for the first time 
+
+Creating new repository
+Go to > admin > settings icon > create repository
+ 
+•	Choose mavan2 hosted
+•	Name > “any name” 	(The same name should be provided on POM.xml file – case sensitive)
+•	Artifact > SNAPSHOT	(This means it will only allow to deploy SNAPSHOT build)
+•	Rule > Strict 		(strict to allow deploy only SNAPSHOT build)
+•	Allow re deploy > 	(will allow to re-deploy the same package)
+•	Hosted Options is just to customize the rules as project requirement)
+
+ 
+POM.xml
+•	Under dependency, we need to change the ID, git URL etc.
+•	ID > “orrba-snapshots” 		(This is the ID which should be matched on settings.xml file)
+•	Name > “orrba-systems.snapshots”	(This is the repo name from Nexus repository)
+•	URL> “URL from Nexus repo” 		(This is the Repo URL where you want to deploy your build)
+•	SNAPSHOT> True 				(Only SNAPSHOTS build will be allowed to deploy. 
+Any build that does not have SNAPSHOT in the build version will be rejected)
+ 
+
+For credentials (Settings.XML)
+•	During the build and release process, MAVEN will use the credentials from settings.xml which is located on the .m2 directory.
+ 
+vi ~/.m2/settings.xml
+
+ 
+Jenkins
+
+Installing Jenkins
+Step 1: Install Java Version 8
+To install Java and wget 8 execute the below command (ignore this if java and wget are already installed)
+yum install java-1.8.0-openjdk
+yum install wget
+
+Downloading tomcat and extracting
+wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.0.M10/bin/apache-tomcat-9.0.0.M10.tar.gz 
+tar xzf apache-tomat-9.0.0.M10.tar.gz
+mv apache-tomcat-9.0.0.M10 tomcat9
+
+Step 2: Settings the users on tomcat-users.xml
+-	/home/hari/tomcat9/conf/tomcat-users.xml
+-	Delete the content of the tomcat-users.xml file. Copy the below block and paste it in tomcat-users.xml file. 
+The updated tomcat-users.xml file will look like this:
+<?xml version='1.0' encoding='utf-8'?>
+<tomcat-users>
+    <role rolename="manager-gui"/>
+    <role rolename="manager-script"/>
+    <role rolename="manager-jmx"/>
+    <role rolename="manager-jmx"/>
+    <role rolename="admin-gui"/>
+    <role rolename="admin-script"/>
+    <user username="admin" password="admin123" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"/>
+</tomcat-users>
+In the above image, as you can see that I have defined several roles and for all these roles. I have given one single username and password i.e. admin and admin123. If you want to assign different username and password for different roles you can do that as well.
+-	Now save it and close the file to go back to the terminal.
+-	We need to start Apache Tomcat now, but before that I will change my directory to Tomcat9 by executing the below command:
+cd tomcat9
+./bin/startup.sh		(To start Tomcat use the below command)
+Tomcat has now started
+-	From browser, localhost:8080 
+
+Step 3: Download Jenkins war File
+https://jenkins.io/download/ 
+-	Copy the Jenkins.war file to Jenkins webapps folder
+
+Step 4: Deploy Jenkins war File 
+-	To deploy Jenkins war file that you have downloaded in the previous step, open your browser and access localhost:8080 again. Now click on the Manager App.
+username: admin | PW: admin123 (as we setup on the tomcat user.xml file) 
+
+-	Now you will be directed to Tomcat web application manager page. When you scroll down you will find an option called Deploy. 
+-	Over here you need to give the context path, i.e. /jenkins and directory URL, i.e. location of the Jenkins war file in your system.
+ 
+/home/hari/jenkins.war and finally click on Deploy.
+
+./tomcat9/bin/startup.sh
+
+-	Now in the Tomcat web application manager page you can find Jenkins listed under Applications along with other web apps.
+
+Step 5: Install Suggested Plugins 
+-	This is the location that contains your one-time password for Jenkins 
+
+/home/hari/.jenkins/secrets/initialAdminPassword
+
+-	Hence, just copy the path from the screen on your end and go back to the terminal.
+-	Finally, use the following command to get your one-time password:
+-	
+cat <paste the location that you have copied>
+-	
+-	Once you have pasted the password, click on continue.
+-	Now I will install plugins. As you see in the below snapshot there are two options i.e. either I can go with suggested plugins or I can select plugins on my own.
+-	I will go with Install Suggested Plugins.
+-	Snapshot below will give you a list of plugins that will be installed when you click on Install Suggested Plugins.
+ 
+-	Once the plugins are installed, you will be directed to a page where you have to Create First Admin User. 
+-	Please fill your relevant details.
+-	After filling this form, click on save and finish. 
+-	Jenkins is ready now.
+Now install all the additional plug ins from plug in list file
+
+
+ 
+Configure Jenkins (Global Tool Configuration and Configure System)
+Global Tool Configuration
+This is the one-time configuration for Jenkins where we can set the JAVA and MAVEN home (same as .bash_profile)
+Jenkins home > Global Tool Configuration
+Setting up JAVA and MVN path for Jenkins (from JDK and MVN)
+    
+
+Configure System
+This is the one-time configuration where we can set GitHub repo using the PAC (GitPAC) token.
+Setting up GitHub Servers
+     
+
+Creating account using GitPAC token
+-	While adding credentials using GitPAC token the type of account must be “Secret text”
+-	From GitHub > Settings > Developer Settings > Personal Access Token > Generate New Token
+-	This token can NOT be seen after the page is left (Copy/Paste the token to your local directory)
+-	Do not close the Token browser until the Secret Account is created/added and perform “Test Connection” from Jenkins window.
+     
+
+Creating a new job on Jenkins
+Jenkins Home > New item
+Give the Name > Select Freestyle Project > OK
+    
+•	Freestyle project (for basic level)
+•	Pipeline
+•	Multi-configuration Project
+•	Need to watch video and put more
+
+Creating a pipeline job
+What is the Jenkins pipeline job and what is the importance:
+-	Pipeline job will scan all the repository from the organization level
+-	It will look for the Jenkins file on each repository and wherever it finds the Jenkins file, it will create job from there.
+-	All the logic will be defined in the Jenkins file. If you want to change and build/job parameters, all has to be done on Jenkins file
+
+     
+
+ 
+Give the description
+-	Under Projects, choose the GitPAC account (this account has to be username/password type which uses the PAC)
+-	It will look for the Jenkins file and will get all the job parameters from there, we do not need to mention anything other than this information here. All the build/jobs will be trigger as defined on the Jenkinsfile
+-	Jenkinsfile has to be on the same repository on the GitHub
+-	Need to watch video and put more info
+
+Adding layer security using Global Pipeline Library
+-	This option is used to create a security layer for Jenkins jobs
+-	By using this, we can create a different repository and place the Jenkins files there which will not be shared with anyone other than DevOps team to secure the Jenkins job. So none will have access to the Jenkins build and none can break the build.
+ 
+ 
+Global Pipeline Library settings
+-	Name >			Can give any name
+-	Retrieval method > 	Legacy SCM
+-	SCM >			Provide the secure repo URL where the Jenkins.groovy file will be located
+ 
+ 
+Creating a release prepare and release perform job
+Prerequisites: 
+-	Nexus should be up and running
+-	Account name should be setup using the same credentials as GitHub but the password will be personal token (Git PAC)
+-	
+  
+ 
+ 
+ 
+  
+ 
+   
+ 
+ 
+Release version was deployed on SCM repository during release:prepare process
+ 
+Release version was deployed on Artifact repository during release:perform process
+
+
+
+ 
+Mater and Slave
+-	Slaves are created to reduce the stress from server
+-	Instead of running all the jobs from server, we can assign Jenkins job to slave machines
+-	Running all the jobs from Jenkins host (server) will stress the host and might lose the data
+-	Need to watch video and put more info
+
+Creating slaves
+-	Download the agent.jar file and place it to </home/hari/bin> folder
+-	Change the permission for the jar file <chmod 755 agent.jar>
+-	Give the name for the slave
+-	Make a separate directory <~/home/hari/new-slave-ws> and place the location on “remote root directory”
+o	Launch method 	>>  <launch agent via execution of command on the master>
+o	Launch command	>>  <java –jar /home/hari/bin/agent.jar>
+-	Save and launch the slave machine
+-	Message <Agent successfully connected and online> should be appeared
+
+Refer to the snapshots below
+      
+ 
+  
+   
+ 
+ 
+Assigning jobs to the Jenkin Slave Machine
+-	Open any job configuration or and created a new Job
+-	Provide the Slave Machine name under <Restrict where this project can be run> option
+-	Save the job and run <build now>
+-	You can see the job is running on the Slave Machine
+-	All the jobs data will be saved in to the slave folder <(~/home/hari/new-slave-ws>
+ 
+Jenkins file (.groovy)
+•	Jenkins file should be present in each same repository from where you want to process the build
+•	Filename extension must be <.groovy>
+•	It should be located under vars folder (ex. Repository> vars > Jenkins)
+•	This file stores all the information about the commands that will be running for the pipeline project
+  #!/usr/bin/groovy
+
+def call() {
+node {
+   def mvnHome,VERSION
+   stage('Preparation') { // for display purposes
+      // Get some code from a GitHub repository
+      cleanWs()
+   
+       checkout scm        
+   }
+
+    stage ('Test') {
+
+       sh "mvn clean -DskipTests=true"
+  
+    }
+    // Running Build without skipping tests for PR builds
+   if (env.BRANCH_NAME.startsWith('PR-')){
+        stage ('Install') {
+           sh "mvn clean install"
+           cleanWs()
+        }
+      }
+   
+   //Running build with skipping tests and deploying artifacts
+   else {
+    stage ('Install') {
+        //rtMaven.run pom: 'pom.xml', goals: 'install -DskipTests=true', buildInfo: buildInfo
+        sh "mvn clean install -DskipTests=true"
+       } 
+     }
+   }
+}
+
+
+Configuring Ports
+Checking the net port running
+netstat –anp | grep –i connected => to see the connected repo
+grep –i chrome => connected repo will be shown
+kill -9 => 
+
+ 
+ Ansible
+Installing Ansible
+If you have root access
+subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms (for RHEL 8)
+$ sudo subscription-manager repos --enable rhel-7-server-ansible-2.9-rpms  (for RHEL 7)
+
+
+yum install ansible
+
+If you do not have root access
+
+
+
+https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#latest-release-via-dnf-or-yum
+
+
+
+
+Server vs Cloud
+Need to watch video, google and find the cloud benefits
+
+
+Docker
+What is Docker
+Its kinds of virtual machine
+
+Installing Docker
+- Cloud/AWS services such as EC2, S3, RDS, Snowflake, etc.
+We need to install Docker engine on the both system
+Daemon (also called as Docker Server) and client service has to up and running
+
+Docker container
+Runtime of an image is called as container
+Every time we do some changes, we have to build the container in order to save. Or, the data or changes won’t be saved.
+
+
+
+
+
+
+ 
+AWS
+What is AWS
+Amazon web services is a cloud system provider. This is user to run the cloud machine locally from Amazon data center.
+
+Starting AWS
+Go to the below website and create/login to AWS web console.
+https://aws.amazon.com/ (gtm.harry83@gmail.com | Aa123456)
+
+EC2 is free and cheapest AWS service for leaning purpose.
+ 
+ 
+Choose Red hat 64 bit system
+ 
+Choose t2.micro (it is a basic system)
+ 
+SSH will be there by default
+Add HTTP and HTTPS and choose source “anywhere” (This will allow to use the cloud machine from anywhere)
+ 
+Download the private key file. (*.pem)
+ 
+ 
+
+
+Using Putty Config and Putty Generation for security key
+
+Open Putty gen and load your .pem key which was downloaded from AWS account during the EC2 launch.
+ 
+ 
+
+ 
+ 
+
+
+ 
+
+ 
+
+ 
