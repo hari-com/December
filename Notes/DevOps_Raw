@@ -1,57 +1,4 @@
-DevOps Overview
-
-DevOps is the practice of operations and development engineers participating together in the entire service lifecycle, from design through the development process to production support. 
-DevOps is no more than a set of processes that coordinate to unify development teams and processes to complement software development. The main reason behind DevOps' popularity is that it allows enterprises to create and improve products at a faster pace than traditional software development methods.
-•	Earlier it was called as Build and Release Engineer
-•	DevOps engineer will use all organization tools and maintain the all the tools during the build and release process.
-•	It is also called a production support role.
-
-DevOps engineer role:
-DevOps engineer will be involved from Implementation >>> Production phase
-Integrated testing (IT), maintenance testing (MT) and User Acceptance Testing (UAT) all will be done will be in non-production environment.
-
- 
-
-Limitation in previous technology and why DevOps come in to the picture?
-Previously, the developer has the prepare the code and maintain the code and take it to the production. Since none of the team was dedicated for the deployment process, developer has to do all these process instead of focusing on developing the tools.
-Now, DevOps is the team who will take care of all the process from the implementation until the product deployment phase in SDLC.
-
-Tools and Technologies:
-Unix and Shell scripting: 90% of time DevOps will be working in this environment
-Agile and Scrum methodologies:
-Source Code Management (SCM): GitHub
-Artifact Repository: Nexus
-Build Tools: Maven, Ant
-Continuous integration: Jenkins
-Continuous Deployment: Ansible
-Legacy servers VS Cloud:
-Application server and Web servers:
-Docker:
-Log monitoring: Splunk
-Networking and Debugging: 
-Load Balancer:
-Certificate Management:
-Cloud Computing:
-Kubernetes:
-AWS: Overview
-
-Setting up Linux VM
-Setup Linux virtualization on Windows
-Install OVM in windows:
-https://download.virtualbox.org/virtualbox/6.0.12/VirtualBox-6.0.12-133076-Win.exe 
-
-Download Redhat7 ISO image:
-https://developers.redhat.com/download-manager/content/origin/files/sha256/43/431a58c8c0351803a608ffa56948c5a7861876f78ccbe784724dd8c987ff7000/rhel-server-7.4-x86_64-dvd.iso 
-Note: Create a free Red hat Account
-
-Follow the steps as mentioned in the below URL to import and configure Redhat image to OVM from step “Create and configure a VM in VirtualBox”
-https://developers.redhat.com/products/rhel/hello-world#fndtn-virtualbox 
-
-Refer to the attached file for details: 
- 
-
-
-
+====================================================
 Linux Commands
 Cmd	Syntax			Description
 pwd>	$ pwd 			>> present directory
@@ -140,21 +87,6 @@ netstat –anp | grep 8888
 Fully Qualified Domain Name (FQDN) >>
 More Linux commands (Basic and Advance are added in pdf file) 
 
-.bash_profile (.sh)
-•	bash profile wil be located in the home directory and it’s a hidden file.
-•	All our environment variables will be set using .bash profile
-•	bash profile settings will be only applicable to logged user (other users has to configure separately)
-•	below is the bash profile path setup for Java and Maven
-# .bash_profile
-
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-        . ~/.bashrc
-fi
-
-# User specific environment and startup programs
-
-PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 # Java and Maven Setup
 # =====================
@@ -174,106 +106,6 @@ $ chmod u+x ‘script.sh’	>> change the permission in other way
 $ ./  ‘scriptname’		>> to execute the shell script ($ sh “script.sh” also execute the file)
 
 Variables 		>> to store a value and we can repeatedly used
-
-# 1nd script 
-#! /usr/bin/sh
-## Arguments (# will ignore the line)
-x=$1
-y=$2
-echo “value of X is: $x”
-echo “value of Y is: $y”
-## Addition
-sum=$(($a+$b))
-echo “adding $a and $b will be: $sum”
-
-# To execute this  $ vi script.sh 10 20 
-(this will hard code the value for x and y) or assign the value by not hardcoding, i.e. just running the script
-
-# 2nd script
-## Strings
-#! /usr/bin/sh
-Fname=$1
-Lname=$2
-
-echo “Your first name is: $fname”
-echo “Your last name is: $lname”
-
-# 3rd script
-## Conditions
-#! /usr/bin/sh
-a=3
-b=5
-if [[$a -ls $b ]] ; then          # ls => Less than | gt => greater than 
-    echo “A is smaller than B”
-elif [[$a –gt $b ]] ; then  # we can use as many conditions we want if the condition does not match, it will go to the else condition
-    echo “A is greater than B”
-else
-    echo “A and B are equal”
-fi                                                     # if condition closed with fi
-
-# Note: -ls and -gt used when using with variables, for numbers we can use <= and >= operator
-
-
-# 4th script
-## String
-#! /usr/bin/sh
-Str1= John
-Str2=Adam
-If [[ “$str1” == “$str2””; then          #For Strings, we need to use double coat “ ”
-    echo “Both strings are equal”
-
-
-# 5th script
-## for loop                                                                   # for loop will continuously run until the condition is accepted
-#! /usr/bin/sh
-i=0
-for (i=0; I<=12; i++)
-for i in 1 2 3 4 12 16             # value of i is incrementing (it can be any random numbers)
-do
-if [[ $i –gt 9 ]]; then
-  echo “Value of i is: $i”
-fi    # if ends with fi
-done  # all loop ends with done
-
-
-# 6th script
-## while loop                                                                # while loop will continuously run until the condition is matched
-#! /usr/bin/sh
-
-input=Hello
-while [ “input” != “bye” ]
-do
-echo “Please type something (bye will quite)”
-read –p ‘enter your input’ input   #Read  => prompt the user to enter the value in the script
-echo “you have entered: $input”
-done   # all loop ends with done
-
-# 7th script
-# Reading a file with while loop (inside the script)
-#! /usr/bin/sh
-
-line=1 
-cat ./<filename> | while IFS= read –r var   #var is used for storing a value while running script
-do
-  echo “I am printing line $line:” var
-  line=$((line+1))
-done
-
-# 8th script
-# Using UPPER or LOWER case with while loop (tr is used for changing the case)
-#! /usr/bin/sh
-
-read -p “enter your string: “ input                #storing user entered value to variable called input
-input1=’echo $input | tr ‘[:upper:]’ ‘[:lower:]’’  # converting user entered value to upper case and storing to variable called input1
-echo “your input is converted to: $input1”
-
-
-
-
-
-
-
-
 
  
 Software Development Life Cycle (SDLC):
