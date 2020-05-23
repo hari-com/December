@@ -10,12 +10,12 @@ java –version
 #Install Maven (tested and worked)  RHEL
 wget https://mirrors.gigenet.com/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz 
 tar xvf apache-maven-3.6.3-bin.tar.gz
-mv apache-maven-3.6.3 /usr/local/apache-maven
-sudo mv apache-maven-3.6.3 /usr/local/apache-maven
+mv apache-maven-3.6.3 /home/hari/Desktop/maven3
+
 
 #Bash-Profile
-export MVN_HOME=/usr/share/apache-maven
-export JAVA_HOME=/usr/java/jdk1.8.0_141
+export MVN_HOME=/home/hari/Desktop/maven3
+export JAVA_HOME=/home/hari/Desktop/jre1.8.0_251
 export PATH=$JAVA_HOME/bin:$MVN_HOME/bin:$PATH
 source ~/.bashrc
 mvn -version
