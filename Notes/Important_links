@@ -1,3 +1,24 @@
+Google Chrome install
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+yum install ./google-chrome-stable_current_*.rpm
+Removing Firefox
+rpm -evv firefox
+linux Update
+yum check-update
+yum update -y
+To check release
+cat /etc/os-release
+
+Installing Network Tools (Samba and cifs)
+yum install samba-client cifs-utils
+
+Installing Network Tools (Samba and cifs)
+smbclient -L 192.168.1.59                                                                             (your windows PC IP)
+
+Mounting window folder to Linux OS
+mount -t cifs -o username=gautamhp //192.168.1.59/lin /mnt          (gautamhp is my window username //myWindowIP)
+
+
 ::::::::Linux related:::::::::
 
 Fundamentals: http://linux-training.be/linuxfun.pdf
