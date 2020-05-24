@@ -18,6 +18,8 @@ sudo firewall-cmd --add-port=8080/tcp --permanent
 sudo firewall-cmd --reload
 sudo firewall-cmd --list-all
 
+Link:
+https://www.linuxtechi.com/install-configure-jenkins-on-centos-7-rhel-7/
 
 
 If you need the LTS release only, run the following commands instead:
