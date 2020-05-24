@@ -1,6 +1,6 @@
 yum install cifs-utils    => installing cifs on linux
 mkdir Desktop/share   => making a folder in linux for mount
-mount.cifs //192.168.1.196/_DevOps /home/hari/Desktop/share -o user=GAUTAMHP    => Provide PW from the windows machine
+mount.cifs //192.168.1.248/linux /home/hari/Desktop/linux -o user=gautamhp    => Provide PW from the windows machine
 
 On Third line
 "IP addrress" is your Windows IP Address
