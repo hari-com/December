@@ -1,23 +1,26 @@
-Website:
-https://computingforgeeks.com/how-to-install-jenkins-on-centos-rhel-8/
-
 Process
 ============
-sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
-sudo yum -y install wget
-sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-
-sudo yum -y install jenkins
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum -y install jenkins [if any error try: yum install jenkins --nogpgcheck ]
+systemctl start jenkins
 systemctl status jenkins
+systemctl enable jenkins
 
-
-If you need the LTS release only, run the following commands instead:
-sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
-sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
-sudo yum -y install jenkins
+If error occured
+================
+yum install jenkins java-1.8.0-openjdk –y
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
 
 Allow port 8080/tcp on the firewall.
 sudo firewall-cmd --add-port=8080/tcp --permanent
 sudo firewall-cmd --reload
 sudo firewall-cmd --list-all
 
+
+
+If you need the LTS release only, run the following commands instead:
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum -y install jenkins
