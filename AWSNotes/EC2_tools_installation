@@ -21,7 +21,7 @@ source ~/.bashrc
 mvn -version
 
 
-#Installing using repo for default Amazon Linux 
+#Installing Maven using repo for default Amazon Linux 
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
 sudo yum install -y apache-maven
@@ -36,7 +36,6 @@ baseurl=http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-7/SRPMS
 
 #Install Jenkins
 Step 1 : Connect to your Linux machine
-
 Set up Custom TCP port: 8080 in AWS Security Groups
 Inbound rules
 Type	        Protocol	  Port range	    Source
@@ -44,7 +43,6 @@ HTTP	        TCP	        80	            0.0.0.0/0
 Custom TCP	  TCP	        8080	          0.0.0.0/0
 SSH	          TCP	22	    0.0.0.0/0
 HTTPS	        TCP	        443	            ::/0
-
 
 Outbound rules
 Type	        Protocol	  Port range	    Destination
@@ -68,6 +66,8 @@ sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
 
 Step 6 : Install Jenkins
 sudo yum install jenkins
+If does not install then 
+got to this location and manually install (/var/cache/dnf/jenkins-93d3f0abc3d47743/packages)
 
 Step 7 : Start jenkins
 sudo service jenkins start
