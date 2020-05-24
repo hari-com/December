@@ -1,5 +1,16 @@
-Process
+Process 
 ============
+(Install Java and maven first and configure)
+Java Page:
+https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
+
+Maven Page:
+https://maven.apache.org/download.cgi
+
+Nexus Page:
+https://help.sonatype.com/repomanager3/download
+
+
 wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
 rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
 rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
