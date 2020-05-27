@@ -1,0 +1,32 @@
+Installation
+=================
+Install JDK and JRE
+Install Maven
+Setup Variables for both Java and Maven
+Install Jenkins.msi file > Enjoy
+
+
+Links
+=================
+GIT download
+https://git-scm.com/downloads
+JDK download
+https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+War file download
+https://jenkins.io/download/
+MVN Download
+https://maven.apache.org/download.cgi
+
+
+Changing Jenkin Ports
+=================
+Go to the directory where you installed Jenkins (C:\Program Files\Jenkins)
+Open Jenkins.xml
+Search --httpPort=8080 and replace the 8080 with the new port number that you wish (i.e. 8099)
+Then, restart Jenkins for changes to take effect using below method
+
+Restart Jenkins
+=================
+Press Win + R
+Type "services.msc"
+Right click on the "Jenkins" line > Restart
