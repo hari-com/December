@@ -2,7 +2,7 @@ yum-config-manager --enable rhel-7-server-extras-rpms
 yum list docker-ee  --showduplicates | sort -r
 yum install -y yum-utils device-mapper-persistent-data lvm2
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum install docker-ce
+yum install docker-ce     || (if error happended try adding --nobest at the end)
 systemctl enable docker.service
 systemctl start docker.service
 docker version
