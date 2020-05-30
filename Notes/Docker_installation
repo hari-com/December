@@ -1,3 +1,5 @@
+Method1
+===============
 yum-config-manager --enable rhel-7-server-extras-rpms
 yum list docker-ee  --showduplicates | sort -r
 yum install -y yum-utils device-mapper-persistent-data lvm2
@@ -8,3 +10,55 @@ systemctl start docker.service
 docker version
 docker info
 docker run hello-world
+
+
+Method2
+===============
+dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+dnf repolist -v
+dnf list docker-ce --showduplicates | sort -r
+
+Install the latest available containerd.io package manually
+dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+dnf install docker-ce
+
+
+Installing specific version
+dnf install docker-ce-3:18.09.1-3.el7
+
+Force installing with nobest option
+dnf install --nobest docker-ce
+
+
+Configuration
+==================
+- Disable Firewall
+systemctl disable firewalld
+
+- Start and enable the docker daemon
+systemctl enable --now docker
+systemctl is-active docker (should show => active)
+systemctl is-enabled docker (should show => enabled)
+
+
+Installing docker-compose
+=========================
+curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose
+mv docker-compose /usr/local/bin && sudo chmod +x /usr/local/bin/docker-compose   [moving into /usr/local/bin and we make it executable]
+
+- Per-user installation
+If user is part of the docker group, and thus it is allowed to run docker commands, and since docker-compose is available as a python package, we can also install it using pip, the python package manager.
+
+dnf install python3-pip
+
+- To obtain docker-compose
+pip3.6 install docker-compose --user
+
+- Testing docker
+- Docker and docker-compose is installed
+- To check that everything works as expected, Try to build an image and run a container using following command:
+docker run --rm --name=linuxconfig-test -p 80:80 httpd
+
+- go to brower and open localhost:80
+
+SourceLink: https://linuxconfig.org/how-to-install-docker-in-rhel-8#h3-1-1-install-a-specific-version-of-docker-ce
