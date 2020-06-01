@@ -1,4 +1,3 @@
-https://github.com/faudeltn/Jenkins/tree/master/build/centos
 Method1
 ===============
 yum-config-manager --enable rhel-7-server-extras-rpms
