@@ -100,3 +100,149 @@ read -p “enter your string: “ input                #storing user entered val
 input1=’echo $input | tr ‘[:upper:]’ ‘[:lower:]’’  # converting user entered value to upper case and storing to variable called input1
 echo “your input is converted to: $input1”
 
+
+
+Sample Start/Stop Scripts
+==========================
+#!/bin/bash
+
+# Follow the steps below to configure Quickstart as a continuous integration appliance, complete with Jenkins,
+# Selenium Builder, Selenium Server, PHPUnit, and Selenium Zoetrope. The script also configures and runs an
+# example Jenkins test job for Quickstart's example6.dev site, including Simpletest module testing and
+# Coder module checks.
+# 
+# 1. Download Quickstart and follow the installation instructions:
+#       http://drupal.org/project/quickstart
+# 2. Open a Terminal window (Applications > Accessories > Terminal) and run the following command:
+#     $ wget -q -O - https://raw.github.com/gist/1306186/install-citools.sh | bash
+# 3. As the script runs, read and follow the directions that appear in the pop-up boxes.
+# 4. When the script completes, Jenkins should open in Firefox. If not, enter the following URL in Firefox:
+#       http://localhost:8081
+# 5. Add a variable (Manage Jenkins > Configure System > check Environment variables > click Add)
+#       name: DISPLAY
+#       value: :0.0
+
+jenkins_check() {
+  rc=1
+  while [ $rc -ne 0 ]; do
+     sleep 5
+     wget --spider http://localhost:8081 > /dev/null 2>&1
+     rc=$?
+  done
+}
+
+echo "###############################################"
+echo "Removing mis-configured local proxy"
+echo "###############################################"
+# For more info: http://drupal.org/node/1194150
+sudo sed -i '/http_proxy.*/d' /etc/environment
+unset http_proxy
+
+echo "###############################################"
+echo "Updating Firefox"
+echo "###############################################"
+sudo add-apt-repository ppa:mozillateam/firefox-stable 
+sudo apt-get update
+echo "y" | sudo apt-get install firefox
+
+echo "###############################################"
+echo "Installing Selenium Builder"
+echo "###############################################"
+wget -O /tmp/se-builder.xpi https://addons.mozilla.org/firefox/downloads/latest/285515/addon-285515-latest.xpi
+firefox /tmp/se-builder.xpi &
+sleep 12
+zenity --info --text="Firefox will start.\n\n1) Please accept the installation of the Selenium Builder extension.\n2) Then restart Firefox." &
+
+echo "###############################################"
+echo "Installing Simpletest & tools to example6.dev"
+echo "###############################################"
+cd /home/quickstart/websites/example6.dev/
+drush dl -l http://example6.dev/ simpletest
+# Apply patch file required to run tests in Drupal 6
+patch -p0 < sites/all/modules/simpletest/D6-core-simpletest.patch
+drush -y -l http://example6.dev/ en simpletest
+# Use pre-patched run-tests.sh script bundled with Pressflow
+cd /home/quickstart/websites/example6.dev/scripts/
+wget https://raw.github.com/pressflow/6/master/scripts/run-tests.sh
+
+echo "###############################################"
+echo "Installing Coder module on example6.dev"
+echo "###############################################"
+cd /home/quickstart/websites/example6.dev/
+# Use -dev version because of checkstyle additions
+# For more info: http://drupal.org/node/858330#comment-4876440
+drush dl -l http://example6.dev/ coder-6.x-2.x-dev
+drush -y -l http://example6.dev/ en coder
+
+echo "###############################################"
+echo "Installing Selenium Server"
+echo "###############################################"
+mkdir /home/quickstart/selenium-server-2.15.0/
+wget -O /home/quickstart/selenium-server-2.15.0/selenium-server.jar http://selenium.googlecode.com/files/selenium-server-standalone-2.15.0.jar
+
+echo "###############################################"
+echo "Installing Selenium Zoetrope dependencies"
+echo "###############################################"
+echo "y" | sudo apt-get install xvfb
+echo "y" | sudo apt-get install ffmpeg
+sudo pear upgrade PEAR
+sudo pear channel-update pear.php.net
+sudo pear config-set auto_discover 1
+sudo pear install pear.phpunit.de/PHPUnit
+sudo pear install phpunit/PHPUnit_Selenium
+
+echo "###############################################"
+echo "Installing Selenium Zoetrope"
+echo "###############################################"
+# For more info: https://launchpad.net/selenium-zoetrope
+cd /home/quickstart/
+bzr branch lp:selenium-zoetrope
+
+echo "###############################################"
+echo "Running separate Jenkins installation script"
+echo "###############################################"
+# For more info: http://drupal.org/node/1301862
+cd /home/quickstart/
+git clone git://gist.github.com/1477667.git
+cp 1477667/install-jenkins.sh /home/quickstart/quickstart/contrib/
+chmod 755 /home/quickstart/quickstart/contrib/install-jenkins.sh
+rm -rf 1477667/
+echo "y" | . /home/quickstart/quickstart/contrib/install-jenkins.sh
+
+echo "###############################################"
+echo "Installing Jenkins plugins"
+echo "###############################################"
+# Give Jenkins time to start up
+jenkins_check
+# Manually run Updatecenter
+# For more info: https://gist.github.com/1026918
+wget -O default.js http://updates.jenkins-ci.org/update-center.json
+sed '1d;$d' default.js > default.json
+curl -X POST -H "Accept: application/json" -d @default.json http://localhost:8081/updateCenter/byId/default/postBack --verbose
+java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://localhost:8081 install-plugin xunit
+java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://localhost:8081 install-plugin git
+java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://localhost:8081 install-plugin checkstyle
+
+echo "###############################################"
+echo "Adding Jenkins job"
+echo "###############################################"
+cd /home/quickstart/jenkins/jobs/
+git clone git://git.assembla.com/ex6devtest.git
+# Restart so jobs get loaded
+java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://localhost:8081 safe-restart
+# Give Jenkins time to restart
+jenkins_check
+wget http://localhost:8081/job/ex6devtest/buildWithParameters -o /dev/null
+while [ ! -e /home/quickstart/jenkins/jobs/ex6devtest/workspace/test-results ]
+  do
+  printf "."
+  sleep 1
+done
+cd /home/quickstart/jenkins/jobs/ex6devtest/
+# Jenkins wipes out the job's workspace directory when first run, so we need to recover the necessary subdirectories
+git checkout -- workspace/selenium/.
+
+echo "###############################################"
+echo "Loading Jenkins interface in Firefox"
+echo "###############################################"
+firefox http://localhost:8081 &
