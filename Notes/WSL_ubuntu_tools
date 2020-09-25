@@ -18,14 +18,18 @@ source /etc/profile.d/maven.sh
 
 Installing Jenkins
 ==================
-wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+1) wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+
 #(try this if does not work) 
 wget -vO - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
 wget --no-check-certificate -qO - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
 
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update
-sudo apt-get install -y jenkins   or    sudo apt-get install jenkins
+2) sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+3) sudo apt-get update
+4) sudo apt-get install -y jenkins   or    sudo apt-get install jenkins
+
+To Start
+5) sudo /etc/init.d/jenkins start
 
 #systemctl status jenkins
 
