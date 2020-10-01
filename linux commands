@@ -2,11 +2,12 @@ Creating symbolic link or short cut
 ln -s "Fullpath=filename" "newname.*.*"
 
 SSH
-ssh-keygen -t rsa -b 4096 -C gtm.harry83@gmail.com
+ssh-keygen -t rsa -b 4096 -C "gtm.harry83@gmail.com"
 Git commands
 ============
 git config --global user.name "someone"
 git config --global user.email "someone@gmail.com"
+
 Verify if added correctly
 ==========================
 git config user.name
@@ -18,3 +19,9 @@ Check upstream/Origin URL
 git remote -v 
 git remote rm origin
 git remote rm upstream
+
+
+CHMOD
+chmod +x <filename> => gives full access 
+
+
