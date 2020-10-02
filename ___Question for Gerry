@@ -8,6 +8,8 @@
 
 Need insight on:
 - Our repo strutcruture, which repo is for what purpose? How do I know where to put my scripts?
+   There is no Dev, QA or Staging branch....? or Master or feature branch?
+   
 - Need help setting utilizing AMD internal lib and tools and how to know what to use when? like AGT, AGI and others...I tried but could not properly...
 
 - Need to underestand our team role in whole product cycle...Which stage are you? where is the dedicated QA team? Which test falls under our R&R and what is the test scope?
