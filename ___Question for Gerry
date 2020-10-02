@@ -1,20 +1,33 @@
+- I came from the SW testing background and this is a new world for me. 
+So, please be patience with me and I will go as I learn and eventually will own some process and contrubute team.
 
-- I came from the SW testing background and this is a new world for me. So, please be patience with me and I will go as I learn.
 - What are the tools I will be working and what will be my Day to Day work?
-- I am not a Python/coding guy but can learn more as I go and help writing simple scripts, from Python perpective, what is your expectation from me regarding python?
-- I have Jenkins experience, but was wondering if there be enough Jenkins work for two people since Igor is already working on Jenkins?
-- Are we responsible for writing new test cases in python? What kinds of test cases... Do we have previous test cases?
 
 
 Need insight on:
 - Need help setting utilizing AMD internal lib and tools and how to know what to use when? 
    like AGT, AGI and others...I tried but could not properly...
+
 - Our repo strutcruture, which repo is for what purpose? How do I know where to put my scripts?
    There is no Dev, QA or Staging branch....? or Master or feature branch?
-   
-- Need to underestand our team role in whole product cycle...Which stage are you? where is the dedicated QA team? Which test falls under our R&R and what is the test scope?
+
+- Need to clearly underestand our team role in whole product cycle...
+Which stage are we involved in? 
+Which test scope falls under our R&R?
+Is there dedicated QA team? where they located?
+
+- I am familier with HW side as well, any lab/HW related work for me in the future? 
+Will need few trainings on the Lab side if I need to work in the Lab in the future(BIOS flashing/updating...)
 
 - Code review process? How are we maintaing this, I do not see the PR process... If I write any new script, where should I push?
+
 - Need some JIRA traning as well, may be later when MI200 test will take place...
-- 
-- I am familier with HW side as well, any lab/HW related work for me in the future? will need quick trainings on BIOS flashing/updating...
+
+
+R&R perpective:
+- I am not a Python/coding guy but can learn more as I go and help writing simple scripts,
+From Python perpective, what is your expectation from me regarding python?
+
+- I have Jenkins experience, but was wondering if there be enough Jenkins work for two people since Igor is already working on Jenkins?
+
+- Are we responsible for writing new test cases in python? What kinds of test cases... Do we have previous test cases?
