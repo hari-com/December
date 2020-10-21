@@ -1,0 +1,88 @@
+pipeline {
+    agent
+    {
+        node
+        {
+            label "${node}"
+        }
+    }
+
+    environment
+    {
+       PYTHONUNBUFFERED = "True"
+       SUT_ORC3_VENV = "/root/storage/regress/orc3_venv"
+    }
+
+    stages {
+
+        stage('middleware_setup') {
+            steps {
+                dir("${workspace}")
+                {
+                    sh '''
+                        python3 -m virtualenv mw_venv
+                        . ./mw_venv/bin/activate
+                        pipflag="regress_middleware==$mw_ver"
+                        if [ $mw_ver = "latest" ]; then
+                          pipflag="-U regress_middleware"
+                        fi
+                        pip install -i http://datahive.amd.com:6543/simple/ --trusted-host datahive.amd.com $pipflag
+                     '''
+                }
+            }
+        }
+
+        stage('orc_install') {
+            steps {
+                dir("${workspace}")
+                {
+                    sh '''
+                        . ./mw_venv/bin/activate
+                        rmware_orc_setup --remote_venv=$SUT_ORC3_VENV pypi $orc3_ver
+                     '''
+                }
+            }
+        }
+
+        stage('Ping google') {
+            steps {
+                dir("${workspace}")
+                {
+                    sh '''
+                      . ./mw_venv/bin/activate
+                        rmware_orc_test --remote_venv=$SUT_ORC3_VENV "ping.ping_test"
+                     '''
+                }
+            }
+        }
+
+        stage('Ping google2') {
+            steps {
+                dir("${workspace}")
+                {
+                    sh '''
+                        . ./mw_venv/bin/activate
+                        rmware_orc_test --remote_venv=$SUT_ORC3_VENV "ping.ping_test"
+                     '''
+                }
+            }
+        }
+    }
+    
+    post {
+ 		success {
+ 			echo 'Build Success!'
+ 				emailext subject: "PASS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                        body: '''${SCRIPT, template="groovy-html.template"}''',
+                        to: "hariprasad.gautam@amd.com, daniel.campbell@amd.com",
+                        from: "Jenkins Server <noreply@amd.com>"
+ 		}
+ 		
+        failure {
+			    emailext subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                        body: '''${SCRIPT, template="groovy-html.template"}''',
+                        to: "hariprasad.gautam@amd.com, daniel.campbell@amd.com",
+                        from: "Jenkins Server <noreply@amd.com>"
+        }
+    }
+}
